@@ -1,4 +1,4 @@
 [core]
     remote = myremote
 ['remote "myremote"']
-    url = C:\Users\yash\Desktop\tmp
+    url = s3://yt-com-bucket
