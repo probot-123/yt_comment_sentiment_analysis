@@ -99,5 +99,5 @@ jobs:
           AWS_DEFAULT_REGION: ap-south-1
         run: |
           python flask_app/app.py &
-          sleep 5
-          pytest scripts/test_flask_api.py -v
+          sleep 60
+          pytest scripts/test_flask_api.py 
