@@ -1,57 +1,69 @@
-yt_comment_sentiment_analysis
-==============================
+# YouTube Comment Sentiment Analysis
 
-A small chrome plugin to detect youtube comment sentiment
+A data science project and Chrome extension to detect sentiment in YouTube comments. This project includes a Flask API for sentiment analysis, machine learning models, and a browser extension for real-time feedback.
 
-Project Organization
-------------
+## Features
 
-    ├── LICENSE
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
-    ├── README.md          <- The top-level README for developers using this project.
-    ├── data
-    │   ├── external       <- Data from third party sources.
-    │   ├── interim        <- Intermediate data that has been transformed.
-    │   ├── processed      <- The final, canonical data sets for modeling.
-    │   └── raw            <- The original, immutable data dump.
-    │
-    ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
-    │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
-    │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                         the creator's initials, and a short `-` delimited description, e.g.
-    │                         `1.0-jqp-initial-data-exploration`.
-    │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-    │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
-    │
-    ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-    │                         generated with `pip freeze > requirements.txt`
-    │
-    ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
-    ├── src                <- Source code for use in this project.
-    │   ├── __init__.py    <- Makes src a Python module
-    │   │
-    │   ├── data           <- Scripts to download or generate data
-    │   │   └── make_dataset.py
-    │   │
-    │   ├── features       <- Scripts to turn raw data into features for modeling
-    │   │   └── build_features.py
-    │   │
-    │   ├── models         <- Scripts to train models and then use trained models to make
-    │   │   │                 predictions
-    │   │   ├── predict_model.py
-    │   │   └── train_model.py
-    │   │
-    │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-    │       └── visualize.py
-    │
-    └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
+- Chrome extension for YouTube comment sentiment detection
+- Flask API for serving sentiment predictions
+- Machine learning pipeline for training and evaluating models
+- Reproducible experiments with DVC
+- Docker support for easy deployment
+
+## Project Structure
+
+```
+├── flask_app/           # Flask API app
+├── src/                 # Source code (data, features, models, visualization)
+├── data/                # Data storage (raw, processed, etc.)
+├── models/              # Trained models and outputs
+├── notebooks/           # Jupyter notebooks for exploration
+├── scripts/             # Utility and test scripts
+├── deploy/              # Deployment scripts (Docker, etc.)
+├── docs/                # Documentation
+├── requirements.txt     # Python dependencies
+├── dvc.yaml             # DVC pipeline definition
+├── Dockerfile           # Docker setup
+└── README.md            # Project overview (this file)
+```
+
+## Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone <repo-url>
+   cd yt_comment_sentiment_analysis
+   ```
+2. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   cd flask_app && pip install -r requirements.txt
+   ```
+3. **(Optional) Set up with Docker:**
+   ```bash
+   docker build -t yt-sentiment .
+   docker run -p 5000:5000 yt-sentiment
+   ```
+
+## Usage
+
+- **Run Flask API locally:**
+  ```bash
+  cd flask_app
+  python app.py
+  ```
+- **Test API:**
+  ```bash
+  curl -X POST http://localhost:5000/predict -H "Content-Type: application/json" -d '{"comment": "This video is awesome!"}'
+  ```
+- **Use Chrome Extension:**
+  1. Load the extension from the Chrome extensions page (`chrome://extensions` > Load unpacked).
+  2. Interact with YouTube comments to see sentiment predictions.
+
+## Reproducibility
+
+- Data and model pipeline managed with [DVC](https://dvc.org/).
+- Notebooks and scripts for data processing and model training in `src/` and `notebooks/`.
 
 
---------
-
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+_Project inspired by the [cookiecutter data science template](https://drivendata.github.io/cookiecutter-data-science/)._
